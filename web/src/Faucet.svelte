@@ -135,7 +135,7 @@
               <span class="navbar-item">
                 <a
                   class="button is-white is-outlined"
-                  href="https://github.com/chainflag/eth-faucet"
+                  href="https://github.com/Stichting-AllianceBlock-Foundation"
                 >
                   <span class="icon">
                     <i class="fa fa-github" />

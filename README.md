@@ -31,8 +31,17 @@ cd eth-faucet
 ```
 
 2. Bundle frontend with Vite
+
 ```bash
 go generate
+```
+
+or 
+
+```bash
+cd web
+yarn install
+yarn build
 ```
 
 3. Build Go project 
@@ -90,17 +99,37 @@ The following are the available command-line flags(excluding above wallet flags)
 | -hcaptcha.sitekey | hCaptcha sitekey                                 |               |
 | -hcaptcha.secret  | hCaptcha secret                                  |               |
 
+
+Yoou can get hCaptcha at https://www.hcaptcha.com/
+
+### Docker build
+
+```bash
+docker build --tag eth-faucet:1.2.0 .
+```
+
 ### Docker deployment
 
 ```bash
-docker run -d -p 8080:8080 -e WEB3_PROVIDER=rpc_endpoint -e PRIVATE_KEY=hex_private_key chainflag/eth-faucet:1.2.0
+docker run -d -p 8080:8080 -e WEB3_PROVIDER=rpc_endpoint -e PRIVATE_KEY=hex_private_key eth-faucet:1.2.0 -faucet.symbol=NXRA -faucet.name=nexera
 ```
 
 or
 
 ```bash
-docker run -d -p 8080:8080 -e WEB3_PROVIDER=rpc_endpoint -e KEYSTORE=keystore_path -v `pwd`/keystore:/app/keystore -v `pwd`/password.txt:/app/password.txt chainflag/eth-faucet:1.2.0
+docker run -d -p 8080:8080 -e WEB3_PROVIDER=rpc_endpoint -e KEYSTORE=keystore_path -v `pwd`/keystore:/app/keystore -v `pwd`/password.txt:/app/password.txt eth-faucet:1.2.0 -faucet.symbol=NXRA -faucet.name=nexera
 ```
+
+If running locally rpc_endpoint should be `http://host.docker.internal:8545`
+
+## Add a network
+In order to add a network you should go to [server.go](./cmd/server.go) and add the network in the the chainId  array
+
+```go
+chainIDMap = map[string]int{"sepolia": 11155111, "holesky": 17000, "nexera": 32382}
+```
+
+To select it use the `faucet.name` flag.
 
 ## License
 
