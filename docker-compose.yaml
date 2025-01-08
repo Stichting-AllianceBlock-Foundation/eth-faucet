@@ -8,13 +8,7 @@ services:
       - -proxycount=1
       - -faucet.name=nexera
       - -faucet.symbol=NXRA
-      - -wallet.provider=http://geth:8545
-      - -wallet.privkey=2e0834786285daccd064ca17f1654f67b4aef298acbb82cef9ec422fb4975622
+      - -wallet.provider=${NODE_ENDPOINT:-http://geth:8545}
+      - -wallet.privkey=${FAUCET_PK}
     ports:
       - 8180:8180
-    networks:
-      - net1
-networks:
-  net1:
-    name: eth-pos-devnet_default
-    external: true
