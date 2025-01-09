@@ -6,8 +6,8 @@ services:
     command:
       - -httpport=8180
       - -proxycount=1
-      - -faucet.name=nexera
-      - -faucet.symbol=NXRA
+      - -faucet.name=${CHAIN_NAME:-nexera}
+      - -faucet.symbol=${CHAIN_SYMBOL:-tNXRA}
       - -wallet.provider=${NODE_ENDPOINT:-http://geth:8545}
       - -wallet.privkey=${FAUCET_PK}
     ports:
