@@ -10,5 +10,7 @@ services:
       - -faucet.symbol=${CHAIN_SYMBOL:-tNXRA}
       - -wallet.provider=${NODE_ENDPOINT:-http://geth:8545}
       - -wallet.privkey=${FAUCET_PK}
+      - -hcaptcha.sitekey=${HCAPTCHA_SITEKEY}
+      - -hcaptcha.secret=${HCAPTCHA_SECRET}
     ports:
       - 8180:8180
